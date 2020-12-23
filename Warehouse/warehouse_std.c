@@ -3,17 +3,16 @@
 void solve()
 {
     int n, T, D, rs, i, j, d, k;
-    FILE *fptr = fopen("input.txt", "r");
-    fscanf(fptr, "%d%d%d", &n, &T, &D);
+    scanf("%d%d%d", &n, &T, &D);
     int a[n], t[n];
     int s[n][T + 1];
     for (i = 0; i <= n - 1; i++)
     {
-        fscanf(fptr, "%d", &a[i]);
+        scanf("%d", &a[i]);
     }
     for (i = 0; i <= n - 1; i++)
     {
-        fscanf(fptr, "%d", &t[i]);
+        scanf("%d", &t[i]);
     }
     for (k = 0; k <= T; k++)
     {
@@ -57,9 +56,7 @@ void solve()
             }
         }
     }
-    fptr = fopen("output.txt", "w");
-    fprintf(fptr, "%d", rs);
-    fclose(fptr);
+    printf("%d", rs);
 }
 
 int main()
