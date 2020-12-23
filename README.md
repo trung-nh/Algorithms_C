@@ -1,3 +1,3 @@
 ﻿# Algorithms
-Data structures and algorithms 
+Data structures and algorithms \n
 Language : C
