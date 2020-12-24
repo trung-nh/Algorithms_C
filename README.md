@@ -1,3 +1,4 @@
 ﻿# Algorithms
-Data structures and algorithms \n
-Language : C
+# Data structures and algorithms
+# Language : C
+# Since : Dec 2020
