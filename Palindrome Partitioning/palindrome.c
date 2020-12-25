@@ -2,12 +2,14 @@
 #include <string.h>
 #include <limits.h>
 
-int minPalPartition(char *str);
+int minPalPartition(char str[]);
 int min(int a, int b);
 int main()
 {
-    char *str;
+    int n;
     FILE *fptr = fopen("input.txt", "r");
+    fscanf(fptr, "%d", &n);
+    char str[n];
     fscanf(fptr, "%s", str);
     fptr = fopen("output.txt", "w");
     fprintf(fptr, "%d", minPalPartition(str));
@@ -18,7 +20,7 @@ int min(int a, int b)
 {
     return (a < b) ? a : b;
 }
-int minPalPartition(char *str)
+int minPalPartition(char str[])
 {
     int n = strlen(str), i, j, k, L;
     int isPalin[n][n], minParti[n][n];
@@ -41,12 +43,20 @@ int minPalPartition(char *str)
                 {
                     isPalin[i][j] = 1;
                 }
+                else
+                {
+                    isPalin[i][j] = 0;
+                }
             }
             else
             {
                 if (str[i] == str[j] && isPalin[i + 1][j - 1] == 1)
                 {
                     isPalin[i][j] = 1;
+                }
+                else
+                {
+                    isPalin[i][j] = 0;
                 }
             }
             // handle minParti[]
@@ -59,7 +69,7 @@ int minPalPartition(char *str)
                 minParti[i][j] = INT_MAX;
                 for (k = i; k <= j - 1; k++)
                 {
-                    minParti[i][j] = min(minParti[i][k] + 1 + minParti[k + 1][j], minParti[i][j]);
+                    minParti[i][j] = min(minParti[i][j], minParti[i][k] + 1 + minParti[k + 1][j]);
                 }
             }
         }
