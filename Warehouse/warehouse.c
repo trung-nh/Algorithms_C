@@ -1,3 +1,5 @@
+//https://codeforces.com/group/Ir5CI6f3FD/contest/276073/problem/J
+
 #include <stdio.h>
 
 void solve()
