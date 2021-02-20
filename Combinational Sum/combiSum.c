@@ -37,7 +37,7 @@ int cmpfunc(const void *a, const void *b)
 {
     return (*(int *)a - *(int *)b);
 }
-void findAllCombiSum(int *arr, int n, int target, int *resSizes, int **resColSizes, Stack_t *combi, int start, int **res)
+void findAllCombiSum(int *arr, int n, int target, int *resSizes, int **resColSizes, Stack_t *combi, int curId, int **res)
 {
     if (target < 0)
     {
@@ -51,18 +51,23 @@ void findAllCombiSum(int *arr, int n, int target, int *resSizes, int **resColSiz
         // to boost runtime we can fix resColSizes[0] = malloc(sizeof(int *)* 256)
         resColSizes[0] = realloc(resColSizes[0], ((*resSizes) + 1) * sizeof(int *));
         resColSizes[0][(*resSizes)] = range;
+        // Add to result
         for (k = 0; k < range; k++)
         {
+            // Avoid using = pop(combi) to keep 'top' unchanged
             res[*resSizes][k] = combi->array[k];
         }
         (*resSizes)++;
         return;
     }
-    while (start < n && target - arr[start] >= 0)
+    while (curId < n && target - arr[curId] >= 0)
     {
-        push(combi, arr[start]);
-        findAllCombiSum(arr, n, target - arr[start], resSizes, resColSizes, combi, start, res);
-        start++;
+        // Till every element in the array starting from start which can contribute to the sum
+        push(combi, arr[curId]);
+        // recur for next number
+        findAllCombiSum(arr, n, target - arr[curId], resSizes, resColSizes, combi, curId, res);
+        curId++;
+        // backtracking
         pop(combi);
     }
 }
@@ -86,5 +91,6 @@ int **combinationSum(int *arr, int arrSize, int target, int *resSizes, int **res
     findAllCombiSum(arr, arrSize, target, resSizes, resColSizes, combi, 0, res);
     free(resColSizes);
     free(res);
+    free(combi);
     return res;
 }
