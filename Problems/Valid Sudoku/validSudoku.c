@@ -58,6 +58,5 @@ bool isValidSudoku(char **board, int boardSize, int *boardColSize)
 }
 
 int main(){
-    if(2) printf("2\n");
     return 0;
 }
