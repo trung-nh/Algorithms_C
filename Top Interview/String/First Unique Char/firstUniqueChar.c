@@ -22,6 +22,7 @@ int firstUniqChar(char *s)
             return i;
         }
     }
+    free(alphab);
     return -1;
 }
 
