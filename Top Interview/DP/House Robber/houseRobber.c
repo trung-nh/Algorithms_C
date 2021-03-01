@@ -22,7 +22,9 @@ int rob(int *nums, int numsSize)
     case 1:
         return nums[0];
     case 2:
-        return (nums[0] > nums[1]) ? nums[0] : nums[1];
+        return max(nums[0], nums[1]);
+    case 3:
+        return max(nums[0] + nums[2], nums[1]);
     default:
         if (numsSize < 0)
         {
@@ -30,28 +32,27 @@ int rob(int *nums, int numsSize)
         }
         break;
     }
-    // top-down memo approach :
-    int memo[numsSize];
-    memo[0] = nums[0];
-    memo[1] = max(nums[0], nums[1]);
-    memo[2] = max(nums[2] + nums[0], nums[1]);
-    int *tmp_max = max(memo[1], memo[2]);
-    return robMemo(nums, numsSize, memo, tmp_max);
-}
-int robMemo(int *nums, int numsSize, int *memo, int *max)
-{
-    int i;
+    // bottom-up approach :
+    int tabula[numsSize];
+    tabula[0] = nums[0];
+    tabula[1] = max(nums[0], nums[1]);
+    tabula[2] = max(nums[2] + nums[0], nums[1]);
+    int i, res;
+    res = max(tabula[2], tabula[1]);
     for (i = 3; i < numsSize; i++)
     {
-        memo[i] = (memo[i - 3] > memo[i - 2]) ? memo[i - 3] : memo[i - 2];
-        memo[i] += nums[i];
-        *max = (memo[i] > (*max)) ? memo[i] : (*max);
+        // Key
+        tabula[i] = max(tabula[i - 2], tabula[i - 3]) + nums[i];
+        res = max(res, tabula[i]);
     }
-    return *max;
+    return res;
 }
 
 int main()
 {
-
+    int a[7] = {10, 2, 5, 7, 20, 5, 10};
+    int b[7] = {5, 100, 6, 1, 200, 210, 10};
+    printf("res a = %d\n", rob(a, sizeof(a) / sizeof(int))); // 45
+    printf("res b = %d\n", rob(b, sizeof(b) / sizeof(int))); // 100+1+210 = 311
     return 0;
 }
