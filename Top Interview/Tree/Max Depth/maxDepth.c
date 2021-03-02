@@ -1,0 +1,29 @@
+// https://leetcode.com/explore/interview/card/top-interview-questions-easy/94/trees/555/
+
+#include <stdio.h>
+
+//   Definition for a binary tree node.
+struct TreeNode
+{
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
+int maxDepth(struct TreeNode *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    int left = maxDepth(root->left);
+    int right = maxDepth(root->right);
+    if (left >= right)
+    {
+        return left + 1;
+    }
+    else
+    {
+        return right + 1;
+    }
+}
