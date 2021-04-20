@@ -1,4 +1,4 @@
 ﻿# Algorithms
 # Data structures and algorithms
-# Language : C
+# Languages : C, Java, Javascript
 # Since : Dec 2020
