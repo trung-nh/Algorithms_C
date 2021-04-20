@@ -1,4 +1,4 @@
 ﻿# Algorithms
 # Leetcode + Codeforces
-# Main languages : C
+# C Program
 # Since : Dec 2020
