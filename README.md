@@ -1,4 +1,4 @@
 ﻿# Algorithms
-# Data structures and algorithms
-# Languages : C, Java, Javascript
+# Leetcode + Codeforces
+# Main languages : C
 # Since : Dec 2020
